@@ -12,14 +12,15 @@ fs.readFile(__dirname + '/' + process.argv[2], 'utf8', function (err,data) {
 	console.log(board);
 	for (var i = 2; i < data_arr.length; i++){
 		if (data_arr[i] !== ''){
-			var line = data_arr[i].split(' ');
-			var id = line[0];
+			var id = (i % 2 == 0 ? data_arr[0].split(' ')[0] : data_arr[1].split(' ')[0]);
+			//var line = data_arr[i].split(' ');
 			//console.log('id = ' + id);
-			var block_line = line[1];
+			var block_line = data_arr[i].split(' ')[1];
 			//console.log('player ' + id + ' placed blocks at ' + block_line);
 			var blocks = block_line.split(';');
 			var coords = [];
 			for (var b = 0; b < blocks.length-1; b++){
+				//console.log('blocks[' + b + '] = ' + blocks[b].split(',')[0] + ', ' + blocks[b].split(',')[1]);
 				var x = parseInt(blocks[b].split(',')[0]);
 				var y = parseInt(blocks[b].split(',')[1]);
 				//console.log('x = ' + x + ', y = ' + y);
@@ -28,6 +29,7 @@ fs.readFile(__dirname + '/' + process.argv[2], 'utf8', function (err,data) {
 					x = 13 - x;
 					y = 13 - y;
 				}
+				//console.log('pushing coordinates ' + x + ', ' + y);
 				coords.push([y,x]);
 			}
 			//console.log('coords = ' + JSON.stringify(coords));

@@ -2,8 +2,8 @@ fs = require('fs');
 
 var counter = 0;
 
-input_folder = '/random_play';
-output_folder = 'random_training/';
+input_folder = '/../Training\ Data/lyceum/moves';
+output_folder = 'lyceum_training/';
 
 fs.readdir(__dirname + input_folder, function(err, items) {
 
